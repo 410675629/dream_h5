@@ -9,7 +9,7 @@
   "keywords": [
     "dream"
   ],
-  "author": "bob",
+  "author": "zhangzhang",
   "license": "ISC",
   "devDependencies": {
     "del": "^2.2.0",
