@@ -171,5 +171,131 @@
 	</script>
 	<script type="text/javascript" src="js/page/page.js"></script>
 	<script type="text/javascript" src="js/common/common.js"></script>
+	<script type="text/javascript"  src="/js/jweixin.js"></script>
+	<script type="text/javascript">
+		(function () {
+		  //修改这里
+		  var  dataForWeixin ={
+		  	title:"杭银消费金融助力圆梦活动", //标题
+		  	link:"..", //链接
+		  	MsgImg:"yuanmeng.jpg",//图片
+		  	desc:"杭银消费金融满分分期为您构建美好生活！"   //描述
+		  }
+
+		  var shareData = {
+		    "appid": "",
+		    "title": dataForWeixin.title,
+		    "link": dataForWeixin.link,
+		    "img_url": dataForWeixin.MsgImg,
+		    "desc": dataForWeixin.desc,
+		    "img_width": "200",
+		    "img_height": "200"
+		  };
+		  //初始化
+		  wx.config({
+		    //debug:true,
+		    appId: "{Apiying:$signPackage['appId']}", //weixinConfigInfo['appId'] weixinConfigInfo 是 vars 指定的
+		    nonceStr: "{Apiying:$signPackage['nonceStr']}",
+		    signature: "{Apiying:$signPackage['signature']}",
+		    timestamp: "{Apiying:$signPackage['timestamp']}",
+		    //要调用的接口需要先在这里声明
+		    jsApiList: [
+		      'onMenuShareTimeline',
+		      'onMenuShareAppMessage',
+		      'onMenuShareQQ',
+		      'onMenuShareWeibo'
+		    ]
+		  });
+
+		  //所有微信事件都要写到ready里
+		wx.ready(function () {
+		    //分享给朋友
+		    wx.onMenuShareAppMessage({
+		      title: shareData.title,
+		      desc: shareData.desc,
+		      link: shareData.link,
+		      imgUrl: shareData.img_url,
+		      trigger: function (res) {
+		        //alert('用户点击发送给朋友');
+		      },
+		      success: function (res) {
+		        //alert('已分享');
+		      },
+		      cancel: function (res) {
+		        //alert('已取消');
+		      },
+		      fail: function (res) {
+		        //alert(JSON.stringify(res));
+		      }
+		    });
+
+		    //分享到朋友圈，注意去掉回调里的alert
+		    wx.onMenuShareTimeline({
+		      title: shareData.title,
+		      desc: shareData.desc,
+		      link: shareData.link,
+		      imgUrl: shareData.img_url,
+		      trigger: function (res) {
+		        //alert('用户点击分享到朋友圈');
+		      },
+		      success: function (res) {
+		        //alert('已分享');
+		      },
+		      cancel: function (res) {
+		        //alert('已取消');
+		      },
+		      fail: function (res) {
+		        //alert(JSON.stringify(res));
+		      }
+		    });
+		    //分享到QQ
+		    wx.onMenuShareQQ({
+		      title: shareData.title,
+		      desc: shareData.desc,
+		      link: shareData.link,
+		      imgUrl: shareData.img_url,
+		      trigger: function (res) {
+		        //alert('用户点击分享到QQ');
+		      },
+		      complete: function (res) {
+		        //alert(JSON.stringify(res));
+		      },
+		      success: function (res) {
+		        //alert('已分享');
+		      },
+		      cancel: function (res) {
+		        //alert('已取消');
+		      },
+		      fail: function (res) {
+		        //alert(JSON.stringify(res));
+		      }
+		    });
+
+		    //分享到微博
+		    wx.onMenuShareWeibo({
+		      title: shareData.title,
+		      desc: shareData.desc,
+		      link: shareData.link,
+		      imgUrl: shareData.img_url,
+		      trigger: function (res) {
+		        //alert('用户点击分享到微博');
+		      },
+		      complete: function (res) {
+		        //alert(JSON.stringify(res));
+		      },
+		      success: function (res) {
+		        //alert('已分享');
+		      },
+		      cancel: function (res) {
+		        //alert('已取消');
+		      },
+		      fail: function (res) {
+		        //alert(JSON.stringify(res));
+		      }
+		    });
+
+		  }); //end of ready
+		})();
+	</script>
 </body>
 </html>
